@@ -13,8 +13,10 @@ import OneExercisePage from "./pages/OneExercisePage/index.js";
 import ProfilePage from "./pages/ProfilePage";
 
 // vamos a hacer un cambio de prueba
-// vamos a hacer un cambio de prueba // vamos a hacer un cambio de prueba
-// vamos a hacer un cambio de prueba
+
+// mE ACARGUE LO DE ARRIBA PA VERT SI FUNCIONA 
+
+// BORRE COSAS ASI QUE AVEWR SI NO DAN OPROBLEMAS 
 
 function App() {
   const { token } = useTokenContext();
