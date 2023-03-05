@@ -17,6 +17,7 @@ Instrucciones básicas para el correcto funcionamiento:
 BACKEND: 
 https://github.com/JorgeAller/apigym
 
+npm i
 node bbdd/initDB.js
 npm run dev
 
