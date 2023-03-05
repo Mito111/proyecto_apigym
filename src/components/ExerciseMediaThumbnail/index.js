@@ -5,7 +5,7 @@ const ExerciseMediaThumbnail = ({ nameMedia, name }) => {
         <img
           src={`http://localhost:4000/${nameMedia}`}
           alt={name}
-          width="150px"
+          style={{ maxWidth: "200px", maxHeight: "250px" }}
         />
       </li>
     </ul>

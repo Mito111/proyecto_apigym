@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
-import useExercises from "./useExercises";
 
 const useExerciseById = (id) => {
   const [exercise, setExercise] = useState([]);
@@ -18,6 +17,9 @@ const useExerciseById = (id) => {
   useEffect(() => {
     const fetchEntryById = async () => {
       try {
+        if (id === undefined) {
+          return;
+        }
         setLoading(true);
         let headers = {};
         if (token) {

@@ -4,10 +4,13 @@ import { useTokenContext } from "../../contexts/TokenContext";
 import "./style.css";
 import { Avatar } from "@mui/material";
 import defaultAvatar from "../../assets/images/defaultAvatar.jpg";
-import Settings from "../SettingSVG/Settings";
-import { useState } from "react";
+
+import { useState, useRef } from "react";
 import Modal from "../Modal";
 import NewExerciseForm from "../NewExerciseForm";
+import NewRutineForm from "../NewRutineForm";
+
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Header = () => {
   const { token, setToken, loggedUser } = useTokenContext();
@@ -15,101 +18,161 @@ const Header = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [newExercise, setNewExercise] = useState(false);
+  const [newRutine, setNewRutine] = useState(false);
+
+  const navRef = useRef(null);
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
+
+  const handleMenuButtonClick = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const handleMenuButtonHover = () => {
+    clearTimeout(timeoutId);
+    setShowMenu(true);
+  };
+
+  const handleMenuButtonHoverDelay = () => {
+    setTimeoutId(
+      setTimeout(() => {
+        setShowMenu(false);
+      }, 1000)
+    );
+  };
 
   return (
-    <header>
-      <h1>
-        <Link to="/">APIGYM</Link>
-      </h1>
+    <>
+      <header>
+        <h1 className="title">
+          <a href="/" style={{ color: "white", fontSize: "95px" }}>
+            APIGYM
+          </a>
+        </h1>
 
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Inicio</Link>
-          </li>
-          {!token && (
-            <>
-              <li>
-                <NavLink to="/register">Registro</NavLink>
-              </li>
-              <li>
-                <NavLink to="/login">Login</NavLink>
-              </li>
-            </>
-          )}
+        <nav
+          className={showMenu ? "active" : ""}
+          ref={navRef}
+          onMouseEnter={handleMenuButtonHover}
+          onMouseLeave={handleMenuButtonClick}
+        >
+          <ul className="menuButtons">
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+            <li>
+              <Link to="/rutines">Rutinas</Link>
+            </li>
+            <li>
+              <Link to="/likes">Me gustas</Link>
+            </li>
+            <li>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={(event) => {
+                  event.preventDefault();
 
-          {role !== "normal" && (
-            <>
-              <li>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={(event) => {
-                    event.preventDefault();
-
-                    event.target.classList.add("clicked");
-                    setNewExercise(true);
-                  }}
-                  className="nuevoEjercicio"
-                >
-                  Nuevo ejercicio
-                </div>
-              </li>
-            </>
-          )}
-          {token && (
-            <>
-              <li>
-                <NavLink to="/profile">
-                  <Avatar
-                    alt={`${username} avatar`}
-                    src={
-                      avatar ? `http://localhost:4000/${avatar}` : defaultAvatar
-                    }
-                  />
-                </NavLink>
-              </li>
-              <li>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setShowModal(true);
-                  }}
-                >
-                  <Settings></Settings>
-                </div>
-              </li>
-            </>
-          )}
-
-          {showModal && (
-            <Modal setShowModal={setShowModal}>
-              <div>
-                <p>Quieres cerrar sesión?</p>
-                <button
-                  style={{ cursor: "pointer" }}
-                  onClick={(e) => {
-                    e.preventDefault();
-
-                    setToken("");
-                    navigate("/");
-                  }}
-                >
-                  Hasta Luego!
-                </button>
+                  event.target.classList.add("clicked");
+                  setNewRutine(true);
+                }}
+                className="newRutine"
+              >
+                Nueva rutina
               </div>
-            </Modal>
-          )}
+            </li>
+            {!token && (
+              <>
+                <li>
+                  <NavLink to="/register">Registro</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/login">Login</NavLink>
+                </li>
+              </>
+            )}
 
-          {newExercise && (
-            <Modal setShowModal={setNewExercise}>
-              <NewExerciseForm
-                setNewExercise={setNewExercise}
-              ></NewExerciseForm>
-            </Modal>
-          )}
-        </ul>
-      </nav>
-    </header>
+            {role !== "normal" && (
+              <>
+                <li>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={(event) => {
+                      event.preventDefault();
+
+                      event.target.classList.add("clicked");
+                      setNewExercise(true);
+                    }}
+                    className="newExercise"
+                  >
+                    Nuevo ejercicio
+                  </div>
+                </li>
+              </>
+            )}
+            {token && (
+              <>
+                <li></li>
+                <li>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setShowModal(true);
+                    }}
+                  >
+                    <LogoutIcon></LogoutIcon>
+                  </div>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
+        <div
+          className="menuButton"
+          onMouseEnter={handleMenuButtonHover}
+          onMouseLeave={handleMenuButtonHoverDelay}
+        >
+          <NavLink to="/profile" className={"avatarBurgerMenu"}>
+            <Avatar
+              alt={`${username} avatar`}
+              src={avatar ? `http://localhost:4000/${avatar}` : defaultAvatar}
+              sx={{ width: 80, height: 80 }}
+            />
+          </NavLink>
+        </div>
+      </header>
+      {newExercise && (
+        <Modal setShowModal={setNewExercise}>
+          <NewExerciseForm setNewExercise={setNewExercise} />
+        </Modal>
+      )}
+      {newRutine && (
+        <Modal setShowModal={setNewRutine}>
+          <NewRutineForm setNewRutine={setNewRutine} />
+        </Modal>
+      )}
+      {showModal && (
+        <Modal setShowModal={setShowModal}>
+          <div className="logout">
+            <p style={{ fontWeight: "bold" }}>
+              Estás seguro que quieres cerrar sesión?
+            </p>
+            <p>Esperamos volver a verte pronto</p>
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={(e) => {
+                e.preventDefault();
+
+                setToken("");
+                navigate("/");
+              }}
+            >
+              Hasta Luego!
+            </button>
+          </div>
+        </Modal>
+      )}
+    </>
   );
 };
 

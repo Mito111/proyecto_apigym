@@ -1,22 +1,37 @@
 .modalBack {
-  background-color: rgba(0, 0, 0, 40%);
+  background-color: #58277065;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: grid;
-  place-items: center;
+
   cursor: default;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .modalContainer {
-  width: 50vw;
+  width: 60vw;
+  height: 60vh;
+
+  max-width: 600px;
 
   background-color: white;
   border-radius: 1rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
+
   align-items: center;
+  margin-bottom: 2rem;
+  z-index: 2;
+}
+
+.buttonCancel {
+  margin-top: 2rem;
+  width: 3rem;
 }

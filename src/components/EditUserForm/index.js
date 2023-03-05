@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useTokenContext } from "../../contexts/TokenContext";
 import { useRef, useState } from "react";
 import "./style.css";
-import Modal2 from "../Modal2";
+import Modal from "../Modal";
+import EditUserAvatar from "../EditUserAvatar";
 
 const EditUserForm = ({ setShowModal }) => {
   const navigate = useNavigate();
@@ -12,18 +13,30 @@ const EditUserForm = ({ setShowModal }) => {
   const { user, setUser, errorMessage, setErrorMessage } = useUsers();
   const { token } = useTokenContext();
   const [showModalError, setShowModalError] = useState(false);
+  const [showNewAvatar, setShowNewAvatar] = useState(false);
+
+  const imagesInputRef = useRef();
 
   return (
     <div className="editFormDiv">
       <h2>Editar perfil</h2>
+
       <form
         onSubmit={async (event) => {
-          event.preventDefault();
           try {
+            event.preventDefault();
             const email = user.email;
-            const username = user.username;
+
             const role = user.role;
-            const avatar = user.avatar;
+
+            // const media = imagesInputRef.current.files;
+
+            const formData = new FormData();
+
+            formData.set("email", email);
+
+            formData.set("role", role);
+            // formData.append("avatar", media[0]);
 
             const emailRegex =
               /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -35,17 +48,18 @@ const EditUserForm = ({ setShowModal }) => {
             const res = await fetch("http://localhost:4000/users", {
               method: "PATCH",
               headers: {
-                "Content-Type": "application/json",
                 authorization: token,
               },
-              body: JSON.stringify({ username, email, role, avatar }),
+              body: formData,
             });
-            console.log(email);
+
             const body = await res.json();
 
             if (!res.ok) {
               throw new Error(body.message);
             }
+            setUser(body.data.updatedUser);
+            navigate(0);
             setShowModal(false);
           } catch (error) {
             console.error(error);
@@ -54,15 +68,6 @@ const EditUserForm = ({ setShowModal }) => {
           }
         }}
       >
-        <label htmlFor="username">Nombre de usuario:</label>
-        <input
-          id="username"
-          value={user.username}
-          onChange={(event) => {
-            setUser({ ...user, username: event.target.value });
-            setShowModalError(false);
-          }}
-        />
         <label htmlFor="email">Email:</label>
         <input
           id="email"
@@ -89,6 +94,32 @@ const EditUserForm = ({ setShowModal }) => {
           <option value="admin">Admin</option>
         </select>
 
+        {/* <label htmlFor="images"> */}
+        {/* <img
+          src={`http://localhost:4000/${user.avatar}`}
+          alt={user.username}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            setShowNewAvatar(true);
+          }}
+        /> */}
+        {/* </label>
+        <input
+          hidden
+          id="images"
+          type="file"
+          accept="image/*"
+          ref={imagesInputRef}
+        /> */}
+        {/* {showNewAvatar && (
+          <Modal setShowModal={setShowNewAvatar}>
+            <img
+              src={`http://localhost:4000/${user.avatar}`}
+              alt={`${user.username}`}
+            ></img>
+            <EditUserAvatar setShowModal={setShowNewAvatar}></EditUserAvatar>
+          </Modal>
+        )} */}
         <button style={{ cursor: "pointer" }}>Guardar cambios</button>
       </form>
 
@@ -97,7 +128,6 @@ const EditUserForm = ({ setShowModal }) => {
           <p>Error: {errorMessage}</p>
         </div>
       )}
-      {console.log(user)}
     </div>
   );
 };

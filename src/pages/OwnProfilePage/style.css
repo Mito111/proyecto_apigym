@@ -1,0 +1,65 @@
+.avatar-hovered {
+  filter: brightness(50%);
+  cursor: pointer;
+}
+
+.profileInfoData {
+  max-width: 60%;
+
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 1rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+.profileInfoData button {
+  background-color: var(--color3);
+  padding: 2rem;
+
+  font-size: 20px;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+}
+
+.yourOwnExercisesTitle {
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+.ownProfileSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-shadow: inset -10px 0px 10px -10px rgba(0, 0, 0, 0.75);
+}
+
+.profileAside {
+  width: 450px;
+
+  border-right: solid var(--color1) 2px;
+}
+
+.yourOwnExercises {
+  flex-grow: 1;
+
+  flex-shrink: 0;
+  width: calc(100% - 450px - 1rem);
+}
+
+.profilePageExerciseList {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, 300px);
+
+  list-style: none;
+  gap: 2rem;
+  margin-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: start;
+
+  overflow-x: auto;
+  white-space: nowrap;
+}

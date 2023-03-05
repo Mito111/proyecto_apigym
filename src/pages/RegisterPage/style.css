@@ -1,0 +1,29 @@
+.registerPageTitle {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 51px;
+
+  margin-bottom: 3rem;
+  background-color: rgb(85, 58, 176);
+  color: white;
+
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%; /* Limitar el ancho del contenedor */
+  text-align: center;
+}
+
+.bannerDownRegisterPage {
+  background-color: rgb(140, 111, 234);
+  color: white;
+
+  height: 300px;
+
+  width: 5000px;
+  transform: rotate(10deg) translateZ(-50px); /* Agregamos la rotación y la translación en el eje z */
+  bottom: 10px;
+  right: 100px;
+  position: relative;
+  z-index: 0;
+}

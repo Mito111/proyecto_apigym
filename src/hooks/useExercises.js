@@ -29,6 +29,24 @@ const useExercises = () => {
     setExercises(newExercises);
   };
 
+  const favExercises = ({
+    idExercise,
+    idRutine,
+    newNumOfExercises,
+    favedByLoggedUser,
+    rutines,
+  }) => {
+    const index = exercises.findIndex((exercise) => exercise.id === idExercise);
+
+    const indexRutine = rutines.findIndex((rutine) => rutine.id === idRutine);
+
+    exercises[index].favedByMe = favedByLoggedUser;
+
+    rutines[indexRutine].exercisesOnRutine = newNumOfExercises;
+
+    setExercises([...exercises]);
+  };
+
   useEffect(() => {
     const fetchExercises = async () => {
       try {
@@ -39,7 +57,7 @@ const useExercises = () => {
         }
 
         const res = await fetch(
-          `http://localhost:4000/exercises?${searchParams}`,
+          `http://localhost:4000/exercises?${searchParams.toString()}`,
           {
             method: "GET",
             headers,
@@ -60,7 +78,7 @@ const useExercises = () => {
     };
 
     fetchExercises();
-  }, [token, setExercises]);
+  }, [token, setExercises, searchParams]);
 
   return {
     name,
@@ -72,6 +90,7 @@ const useExercises = () => {
     nameMedia,
     setNameMedia,
     likeExercises,
+    favExercises,
     deleteExercise,
     exercises,
     setExercises,

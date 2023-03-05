@@ -1,0 +1,31 @@
+.oneRutine {
+  max-width: 50%;
+  margin-left: 4rem;
+}
+.oneRutineArticle {
+  width: 425px;
+  margin-left: 4rem;
+  margin-top: 2rem;
+  background-color: lightgrey;
+  border: solid black 2px;
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 40%);
+  scroll-snap-align: start;
+  margin-bottom: 2rem;
+}
+
+.oneRutineArticle p {
+  overflow-wrap: break-word;
+  margin-bottom: 1rem;
+}
+
+.ownRutine.rutine header p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ownRutine {
+  background-color: grey;
+}

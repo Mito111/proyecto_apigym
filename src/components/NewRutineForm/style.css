@@ -1,0 +1,92 @@
+.newRutineForm label,
+.newRutineButtons {
+  display: block;
+}
+
+.newRutineForm label {
+  margin-bottom: 0.5rem;
+}
+
+.newRutineForm input {
+  margin-bottom: 1rem;
+
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(136, 136, 136);
+  font-size: 1.1rem;
+}
+
+.newRutineForm input:focus {
+  outline: 1px solid black;
+}
+
+.newRutineForm textarea {
+  margin-bottom: 2rem;
+
+  width: 100%;
+  height: 100px;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(136, 136, 136);
+  font-size: 1.1rem;
+  resize: none;
+}
+
+.newRutineButtons {
+  padding: 0.5rem 1.5rem;
+  background-color: white;
+  border: 1px solid rgb(136, 136, 136);
+  font-size: 1rem;
+  margin: 1rem auto;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.newRutineButtons:hover {
+  background-color: black;
+  color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 50%);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 10px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2;
+  border-radius: 10px;
+}
+.newRutineForm {
+  width: 70%;
+
+  margin: auto;
+
+  min-height: 390px;
+
+  max-height: 450px;
+}
+
+.newRutineFormSection h4 {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  padding: 2rem 0rem;
+  margin-bottom: 1rem;
+  background-color: rgb(85, 58, 176);
+  color: white;
+
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  text-align: center;
+
+  z-index: 2;
+}
+
+.newRutineFormSection {
+  width: 100%;
+  overflow-y: auto;
+  padding-right: 1rem;
+  z-index: 2;
+}

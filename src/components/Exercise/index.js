@@ -2,39 +2,45 @@ import ExerciseMedia from "../ExerciseMedia";
 import ExerciseMediaThumbnail from "../ExerciseMediaThumbnail";
 import getTimeAgo from "../utils/getTimeAgo";
 import "./style.css";
-
 import { useNavigate } from "react-router-dom";
 import LikeButton from "../LikeButton";
 import { useTokenContext } from "../../contexts/TokenContext";
 import { useState } from "react";
 import Modal from "../Modal";
+import deleteButton from "../../assets/images/deleteButton.png";
+import FavButton from "../FavButton";
 
 const Exercise = ({
   id,
   name,
   description,
   muscleGroup,
-  ownerId,
+  ownerUsername,
   likes,
   likedByMe,
+  favedByMe,
   likeExercises,
+  favExercises,
   deleteExercise,
   owner,
   createdAt,
   nameMedia,
   thumbnail,
+  rutines,
 }) => {
   const navigate = useNavigate();
   const [showVerifyDelete, setShowVerifyDelete] = useState(false);
 
   const { token } = useTokenContext();
 
+  const type = "exercise";
+
   return (
     <article className={owner ? "ownExercise exercise" : "exercise"}>
       <header>
         <h3>{name}</h3>
       </header>
-      <p>{description}</p>
+      {description ? <p className="description">{description}</p> : ""}
       <p>Grupo Muscular: {muscleGroup}</p>
       {thumbnail ? (
         <ExerciseMediaThumbnail nameMedia={nameMedia} name={name} />
@@ -42,29 +48,44 @@ const Exercise = ({
         <ExerciseMedia nameMedia={nameMedia} name={name} />
       )}
       <LikeButton
+        type={type}
         id={id}
         likes={likes}
         likedByMe={likedByMe}
-        likeExercises={likeExercises}
+        likeType={likeExercises}
       ></LikeButton>
+      <FavButton
+        id={id}
+        favedByMe={favedByMe}
+        favExercises={favExercises}
+        idExercise={id}
+        rutines={rutines}
+      ></FavButton>
 
-      {/*Cambiar en el futuro, el parrafo por un imagen rellena de un corazoncito o el icono que sea que indique que le dieron like al ejercicio*/}
       <footer>
-        <p className="entryDateAuthor">
-          Publicado por {owner ? "ti " : `usuario ${ownerId} `}
-          {getTimeAgo(new Date(createdAt))}
-        </p>
+        <div>
+          <p className="entryDateAuthor">
+            Publicado por {owner ? "ti " : `${ownerUsername} `}
+            {getTimeAgo(new Date(createdAt))}
+          </p>
+        </div>
 
-        {owner && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
+        {owner ? (
+          <div className="delete">
+            <img
+              onClick={(e) => {
+                e.preventDefault();
 
-              setShowVerifyDelete(true);
-            }}
-          >
-            ELIMINAR
-          </button>
+                setShowVerifyDelete(true);
+              }}
+              style={{ cursor: "pointer" }}
+              className="deleteButton"
+              src={deleteButton}
+              alt="eliminar"
+            ></img>
+          </div>
+        ) : (
+          ""
         )}
 
         {showVerifyDelete && (
@@ -97,11 +118,12 @@ const Exercise = ({
                   }
                 );
                 const body = await res.json();
-                console.log(body);
+
                 if (!res.ok) {
                   throw new Error(body.message);
                 }
                 deleteExercise({ id });
+                navigate("/home");
               }}
             >
               ELIMINAR

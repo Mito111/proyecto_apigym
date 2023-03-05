@@ -1,50 +1,68 @@
 import Exercise from "../Exercise";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import "./style.css";
 
-const ExerciseList = ({ exercises, likeExercises, deleteExercise }) => {
+const ExerciseList = ({
+  nameClass,
+  exercises,
+  likeExercises,
+  favExercises,
+  deleteExercise,
+  title,
+  rutines,
+  changeIdOfExercises,
+}) => {
   const [thumbnail, setThumbnail] = useState(true);
 
   return (
-    <ul>
-      {exercises.map((exercise) => {
-        const {
-          id,
-          name,
-          description,
-          muscleGroup,
-          idUser,
-          likes,
-          likedByMe,
-          owner,
-          createdAt,
-          nameMedia,
-        } = exercise;
+    <>
+      {title && <h3 className="exercisesOnLikePage">EJERCICIOS</h3>}
+      <ul className={`${nameClass} `}>
+        {exercises.map((exercise) => {
+          const {
+            id,
+            name,
 
-        return (
-          <li key={id}>
-            <Link to={`/exercises/${id}`}>
-              <Exercise
-                id={id}
-                name={name}
-                description={description}
-                muscleGroup={muscleGroup}
-                ownerId={idUser}
-                likes={likes}
-                likedByMe={likedByMe}
-                likeExercises={likeExercises}
-                deleteExercise={deleteExercise}
-                owner={owner}
-                createdAt={createdAt}
-                nameMedia={nameMedia}
-                thumbnail={thumbnail}
-                setThumbnail={setThumbnail}
-              />
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+            muscleGroup,
+            idUser,
+            username,
+            likes,
+            likedByMe,
+            favedByMe,
+            owner,
+            createdAt,
+            nameMedia,
+          } = exercise;
+
+          return (
+            <li key={changeIdOfExercises ? exercises.indexOf(exercise) : id}>
+              <Link to={`/exercises/${id}`}>
+                <Exercise
+                  id={id}
+                  name={name}
+                  muscleGroup={muscleGroup}
+                  ownerId={idUser}
+                  ownerUsername={username}
+                  likes={likes}
+                  likedByMe={likedByMe}
+                  favedByMe={favedByMe}
+                  likeExercises={likeExercises}
+                  favExercises={favExercises}
+                  deleteExercise={deleteExercise}
+                  owner={owner}
+                  createdAt={createdAt}
+                  nameMedia={nameMedia}
+                  thumbnail={thumbnail}
+                  setThumbnail={setThumbnail}
+                  rutines={rutines}
+                />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 };
 

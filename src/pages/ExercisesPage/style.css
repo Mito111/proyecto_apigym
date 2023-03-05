@@ -1,0 +1,109 @@
+.exercisesTitle {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 100px;
+
+  background-color: var(--color3);
+  -webkit-text-stroke: 2px white;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  align-items: center;
+  cursor: pointer;
+}
+.exercisesTitle h2 {
+  color: transparent;
+  padding-left: 0;
+  z-index: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exercisesTitle h2:hover {
+  color: white;
+}
+.exercisesTitle div {
+  width: 7%;
+  min-width: 80px;
+  max-width: 80px;
+}
+.exercisesTitle svg {
+  color: white;
+  position: relative;
+  left: 35px;
+  bottom: 16px;
+  scale: 2;
+}
+
+.exercisesTitle svg:hover {
+  scale: 2.5;
+}
+
+section .active {
+  display: none;
+}
+
+.exercisesTitleMain {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 150px;
+
+  background-color: var(--color3);
+  -webkit-text-stroke: 2px white;
+  color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  align-items: center;
+  cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.exercisesTitleMain h2 {
+  color: transparent;
+  padding-left: 0;
+  z-index: 1;
+}
+
+.exercisesTitleMain:hover {
+  color: white;
+  -webkit-text-stroke: 0px;
+}
+
+.exercisesTitleMainWip a {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 130px;
+
+  background-color: var(--color3);
+  -webkit-text-stroke: 2px white;
+  color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  align-items: center;
+  cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.exercisesTitleMainWip a:hover {
+  color: black;
+  -webkit-text-stroke: 0px;
+}
+
+.exercisesTitleMain div {
+  width: 7%;
+}
+.exercisesTitleMain svg {
+  color: white;
+  position: relative;
+  left: 35px;
+  bottom: 16px;
+  scale: 2;
+}
