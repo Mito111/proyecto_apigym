@@ -1,0 +1,99 @@
+.rutineListNormal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 350px);
+
+  list-style: none;
+  gap: 2rem;
+  padding-left: 4rem;
+  padding-top: 4rem;
+  justify-content: start;
+  padding-bottom: 4rem;
+}
+
+.rutineOnRutinesPage {
+  background-color: lightgrey;
+  border: solid black 2px;
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 40%);
+  scroll-snap-align: start;
+}
+
+.rutineOnRutinesPage p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.likesPageContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
+
+.likedExercises {
+  width: 50%;
+  padding-right: 1rem;
+  border-right: solid black 2px;
+  padding-left: 4rem;
+  margin-bottom: 2rem;
+}
+
+.exerciseListOnLikesPage {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, 300px);
+
+  list-style: none;
+  gap: 2rem;
+
+  padding-top: 1rem;
+
+  padding-bottom: 1rem;
+  justify-content: start;
+
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.nameClassLikesPage {
+  flex-grow: 1;
+  margin-left: 1rem;
+
+  flex-shrink: 0;
+  width: 48%;
+}
+.nameClassLikesPageUl {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, 300px);
+
+  list-style: none;
+  gap: 2rem;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: start;
+
+  overflow-x: auto;
+  white-space: nowrap;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 850px) {
+  .nameClassLikesPage {
+    margin-left: 2rem;
+  }
+
+  .likedExercises {
+    width: 100%;
+    border: none;
+  }
+  .likesPageContainer {
+    margin-right: 0;
+  }
+  .likedExercises {
+    padding-left: 2rem;
+  }
+}

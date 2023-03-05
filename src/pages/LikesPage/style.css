@@ -1,0 +1,28 @@
+.likesTitle {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 51px;
+
+  margin-bottom: 2rem;
+  background-color: darkblue;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+.rutineListOnLikesPageTitle {
+  font-size: 40px;
+  margin-top: 2rem;
+}
+
+.exerciseListOnLikesPageTitle {
+  font-size: 40px;
+  margin-top: 2rem;
+}
+
+.nameClassLikesPageUl li article {
+  width: 350px;
+}

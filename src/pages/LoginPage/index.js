@@ -1,12 +1,15 @@
 import LoginForm from "../../components/LoginForm";
+import "./style.css";
 
 const LoginPage = () => {
   return (
-    <section>
-      <h2>Inicia sesión en ApiGym</h2>
-
-      <LoginForm />
-    </section>
+    <>
+      <h2 className="loginPageTitle">Inicia sesión en ApiGym</h2>
+      <section>
+        <LoginForm />
+      </section>
+      <div className="bannerDownLoginPage"></div>
+    </>
   );
 };
 

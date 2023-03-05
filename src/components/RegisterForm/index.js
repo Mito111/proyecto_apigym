@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-escape */
 import useUsers from "../../hooks/useUsers";
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 const EditUserForm = () => {
   const navigate = useNavigate();
@@ -14,8 +15,9 @@ const EditUserForm = () => {
   } = useUsers();
 
   return (
-    <div>
+    <div className="registerFormDiv">
       <form
+        className="registerForm"
         onSubmit={async (event) => {
           try {
             event.preventDefault();
@@ -54,6 +56,7 @@ const EditUserForm = () => {
         <label htmlFor="username">Nombre de usuario:</label>
         <input
           id="username"
+          placeholder="User_99"
           value={user.username}
           onChange={(event) => {
             setUser({ ...user, username: event.target.value });
@@ -64,6 +67,7 @@ const EditUserForm = () => {
         <input
           id="email"
           type="email"
+          placeholder="email@email.com"
           value={user.email}
           onChange={(event) => {
             setUser({ ...user, email: event.target.value });
@@ -74,6 +78,7 @@ const EditUserForm = () => {
         <input
           id="password"
           type="password"
+          placeholder="******"
           value={user.password}
           onChange={(event) => {
             setUser({ ...user, password: event.target.value });

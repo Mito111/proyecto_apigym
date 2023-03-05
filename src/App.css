@@ -2,10 +2,26 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  filter: blur(0.5);
+}
+:root {
+  --color1: #582770;
+  --color2: #773d94;
+  --color3: #943d8a;
+  --color4: #c22760;
+  --color5: #e81764;
 }
 
-.Toastify > .Toastify__toast-container--bottom-center {
-  bottom: 4em;
+body {
+  min-height: 100vh;
+  padding-bottom: 2.5rem;
+  position: relative;
+  overflow-x: hidden;
+}
+main {
+  min-height: calc(100vh - 190px);
+  overflow: hidden;
+  overflow-x: hidden;
 }
 .hola {
   font-size: 10rem;
@@ -15,12 +31,7 @@
   border-radius: 5px;
   margin-right: 10px;
 }
-h2 {
-  display: inline;
-}
-.oneExercise {
-  margin-bottom: 2rem;
-}
+
 a {
   text-decoration: none;
   color: black;
@@ -32,22 +43,8 @@ ul {
 
 #root {
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+
   background-color: #f8f8f8;
-}
-
-main {
-  max-width: 1000px;
-  margin: 4rem auto;
-  flex-grow: 1;
-}
-
-main > section h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.75rem;
 }
 
 svg {
@@ -58,14 +55,11 @@ svg {
   padding: 5px;
 }
 
-.active div {
-  border: 2px solid black;
-}
-
 .clicked {
   padding: 5px;
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 20%);
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

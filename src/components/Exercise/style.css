@@ -1,9 +1,8 @@
 .exercise {
   border: 1px solid rgb(136, 136, 136);
   padding: 1rem;
-  width: 700px;
-  background-color: white;
-  margin: 1rem;
+
+  background-color: #c887c1d8;
 }
 
 .exercise:hover {
@@ -32,13 +31,21 @@
   margin-bottom: 1rem;
 }
 
+.description {
+  width: 100%;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
 .ownExercise {
-  background-color: lightgrey;
+  background-color: #7d5779;
 }
 .exercise > footer {
   display: flex;
-  gap: 0.25rem;
-  align-items: center;
+  gap: 0.75rem;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .exerciseDateAuthor {
@@ -53,4 +60,12 @@
 .exercise svg {
   margin-left: 1rem;
   height: 30px;
+}
+
+.deleteButton {
+  height: 30px;
+}
+
+.deleteButton:hover {
+  scale: 1.1;
 }

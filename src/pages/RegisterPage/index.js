@@ -1,12 +1,15 @@
 import RegisterForm from "../../components/RegisterForm";
+import "./style.css";
 
 const RegisterPage = () => {
   return (
-    <section>
-      <h2>Página de registro</h2>
-
-      <RegisterForm />
-    </section>
+    <>
+      <h2 className="registerPageTitle">Página de registro</h2>
+      <section>
+        <RegisterForm />
+      </section>
+      <div className="bannerDownRegisterPage"></div>
+    </>
   );
 };
 

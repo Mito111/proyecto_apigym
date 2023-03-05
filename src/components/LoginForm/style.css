@@ -27,13 +27,21 @@
   font-size: 1.1rem;
   margin: 2rem auto;
   border-radius: 0.25rem;
+  z-index: 1;
 }
 
 .loginForm button:hover {
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 
 .loginFormDiv {
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm {
+  z-index: 1;
 }

@@ -1,0 +1,68 @@
+#root > header {
+  display: flex;
+  align-items: center;
+  padding-right: 4rem;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 20%);
+  height: 150px;
+  background: linear-gradient(to right, #626262, var(--color2));
+  background-size: 400% 400%;
+  animation: GradientAnimation 10s ease infinite;
+  position: relative;
+}
+
+@keyframes GradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#root > header > * {
+  flex: 1 1;
+}
+
+#root > header h1 {
+  text-align: start;
+}
+
+#root > header ul {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.menuButtonsLanding {
+  align-items: center;
+}
+#root > header .menuButtonsLanding a,
+#root > header .menuButtonsLanding div {
+  display: inline-block;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px white;
+  padding: 0.5rem 1rem;
+  background-color: white;
+}
+
+#root > header .menuButton {
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+
+  right: 30px;
+}
+
+#root > header .menuButton div {
+  box-shadow: 1px 5px 10px rgb(41, 38, 38);
+}
+
+#root > header nav.active {
+  opacity: 1;
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+}

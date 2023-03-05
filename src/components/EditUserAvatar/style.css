@@ -1,0 +1,19 @@
+.editFormDiv {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.editFormDiv form {
+  display: flex;
+  flex-direction: column;
+}
+
+.editFormDiv form input,
+.editFormDiv form select {
+  margin-bottom: 15px;
+}
+
+.editFormDiv button {
+  height: 3rem;
+  margin-bottom: 15px;
+}

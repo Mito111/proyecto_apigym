@@ -16,6 +16,7 @@ const LoginForm = () => {
   const [showModalError, setShowModalError] = useState(false);
 
   const [tempVal, setTempVal] = useState("");
+  const [tempPass, setTempPass] = useState("");
   const emailRegex =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -34,7 +35,7 @@ const LoginForm = () => {
             });
 
             const body = await res.json();
-            console.log(user);
+
             if (!res.ok) {
               throw new Error(body.message);
             }
@@ -62,18 +63,18 @@ const LoginForm = () => {
         <input
           id="password"
           type="password"
-          value={user.password}
+          value={tempPass}
           onChange={(event) => {
-            setUser({ ...user, password: event.target.value });
+            setTempPass(event.target.value);
           }}
           placeholder="******"
         />
         <button
           onClick={() => {
             if (emailRegex.test(tempVal)) {
-              setUser({ ...user, email: tempVal });
+              setUser({ email: tempVal, password: tempPass });
             } else {
-              setUser({ ...user, username: tempVal });
+              setUser({ username: tempVal, password: tempPass });
             }
           }}
         >

@@ -1,0 +1,4 @@
+.avatar-hovered {
+  filter: brightness(50%);
+  cursor: pointer;
+}
